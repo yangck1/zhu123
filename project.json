@@ -1,15 +1,34 @@
 {
   "assets": [],
+  "buildDir": "build",
   "build": {
-    "build_number": 0,
-    "build_time": 0
+    "build_id": "975E426F-2",
+    "build_number": 2,
+    "build_time": 1657007908264
   },
   "useFeatures": [],
-  "icon": "res/logo.png",
-  "main": "main.js",
-  "name": "强国助手",
-  "packageName": "com.auto.xxqg",
+  "launchConfig": {
+    "displaySplash": false,
+    "hideLauncher": false,
+    "hideLogs": false,
+    "stableMode": false,
+    "volumeUpcontrol": true,
+    "permissions": [
+      "accessibility_services",
+      "background_start",
+      "draw_overlay"
+    ],
+    "serviceDesc": "使脚本自动操作(点击、长按、滑动等)所需，若关闭则只能执行不涉及自动操作的脚本。",
+    "splashText": "Powered by Autoxjs.com"
+  },
+  "main": "main1.js",
+  "name": "助手",
+  "packageName": "com.yck.yck",
   "scripts": {},
-  "versionCode": 1,
-  "versionName": "1.0.0"
+  "signingConfig": {
+    "alias": "",
+    "keystore": ""
+  },
+  "versionCode": 17,
+  "versionName": "2.1"
 }

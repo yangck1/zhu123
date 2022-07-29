@@ -21,6 +21,14 @@ ui.layout(
                 <frame>
                     <vertical>
                         <vertical gravity="center" layout_weight="1">
+                        <card w="*" h="70" margin="10 5" cardCornerRadius="2dp" cardElevation="1dp" foreground="?selectableItemBackground">
+                                <horizontal w="*" gravity="center" marginTop="10">
+                                    <vertical padding="10 8" h="auto" w="0" layout_weight="1">
+                                           <text text="卡密到期时间：" textColor="#222222" textSize="16sp" maxLines="1"/>
+                                           <text id="endTimeTxt" text="" textColor="#999999" textSize="14sp" maxLines="1"/>
+                                    </vertical>
+                                </horizontal>
+                            </card>
                             <card w="*" h="70" margin="10 5" cardCornerRadius="2dp" cardElevation="1dp" foreground="?selectableItemBackground">
                                 <horizontal gravity="center_vertical">
                                     <vertical padding="10 8" h="auto" w="0" layout_weight="1">
@@ -499,7 +507,7 @@ Initialize();
 // } else if (app.versionName != latest_version) {
 //     checkversion();
 // }
-
+ui.endTimeTxt.setText(CONFIG.get("endTimeTxt")); 
 
 // 创建选项菜单(右上角)
 ui.emitter.on("create_options_menu", menu=>{
