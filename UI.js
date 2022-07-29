@@ -494,6 +494,7 @@ var GLOBAL_CONFIG = storages.create("GLOBAL_CONFIG");
 var TTXS_PRO_CONFIG = storages.create("TTXS_PRO_CONFIG");
 var STUDY_CONFIG = storages.create("STUDY_CONFIG");
 var BAIDUAPI = storages.create("BAIDUAPI");
+var CONFIG = storages.create("CONFIG");
 var execution = "";
 var thread = null;
 Initialize();
