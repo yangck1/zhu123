@@ -514,7 +514,7 @@ ui.endTimeTxt.setText(CONFIG.get("endTimeTxt"));
 ui.emitter.on("create_options_menu", menu=>{
     menu.add("日志");
     menu.add("关于");
-    menu.add("Github");
+//    menu.add("Github");
 });
 
 // 监听选项菜单点击
