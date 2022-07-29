@@ -490,15 +490,15 @@ var execution = "";
 var thread = null;
 Initialize();
 
-// 版本更新检查
-var apkurl = "https://sp.sec-an.cn/storage01/Better-Auto-XXQG/v2.1.0.apk";
-var latest_version = "2.1.0";
-if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
-    ui.update.visibility = 0;
-    ui.update.setText("点击更新至最新版v" + latest_version);
-} else if (app.versionName != latest_version) {
-    checkversion();
-}
+// // 版本更新检查
+// var apkurl = "https://sp.sec-an.cn/storage01/Better-Auto-XXQG/v2.1.0.apk";
+// var latest_version = "2.1.0";
+// if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
+//     ui.update.visibility = 0;
+//     ui.update.setText("点击更新至最新版v" + latest_version);
+// } else if (app.versionName != latest_version) {
+//     checkversion();
+// }
 
 
 // 创建选项菜单(右上角)
@@ -517,9 +517,9 @@ ui.emitter.on("options_item_selected", (e, item)=>{
         case "关于":
             alert("关于", "强国助手 v"+latest_version);
             break;
-        case "Github":
-            app.openUrl("https://github.com/sec-an/Better-Auto-XXQG");
-            break;
+        // case "Github":
+        //     app.openUrl("https://github.com/sec-an/Better-Auto-XXQG");
+        //     break;
     }
     e.consumed = true;
 });
@@ -591,14 +591,14 @@ ui.log.click(function () {
 });
 
 // APP更新检测
-ui.update.click(function () {
-    if (app.versionName != latest_version) {
-        GLOBAL_CONFIG.put("NO_UPDATE", 0);
-        checkversion();
-    } else {
-        toast("当前已经是最新版本！");
-    }
-});
+// ui.update.click(function () {
+//     if (app.versionName != latest_version) {
+//         GLOBAL_CONFIG.put("NO_UPDATE", 0);
+//         checkversion();
+//     } else {
+//         toast("当前已经是最新版本！");
+//     }
+// });
 
 // 下载并运行所选脚本
 ui.start.click(function () {
@@ -609,10 +609,9 @@ ui.start.click(function () {
     }
     threads.start(function () {
         let url = [
-            'https://sp.sec-an.cn/storage01/Better-Auto-XXQG/'+ui.script_chosen.getSelectedItemPosition()+'.js',
-            'https://ghproxy.com/https://raw.githubusercontent.com/sec-an/Better-Auto-XXQG/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
-            'https://cdn.jsdelivr.net/gh/sec-an/Better-Auto-XXQG@main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
-            'https://raw.githubusercontent.com/sec-an/Better-Auto-XXQG/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
+            'http://140.238.63.114/https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
+            'https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
+            'https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
         ];
         for (var i = 0; i < url.length; i++) {
             try {
