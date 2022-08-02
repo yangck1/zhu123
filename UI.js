@@ -544,7 +544,7 @@ var script_chosen_Listener = new android.widget.AdapterView.OnItemSelectedListen
     onItemSelected: function (parent, view, position, id) {
         toastLog('选择脚本：' + ui.script_chosen.getSelectedItem());
         if (ui.script_chosen.getSelectedItemPosition() == 0) {
-            ui.ttxs.visibility = 8;
+          //  ui.ttxs.visibility = 8;
             ui.study.visibility = 8;
             ui.ttxs_pro.visibility = 0;
         }
@@ -555,7 +555,7 @@ var script_chosen_Listener = new android.widget.AdapterView.OnItemSelectedListen
         // }
         else if (ui.script_chosen.getSelectedItemPosition() == 1) {
             ui.ttxs_pro.visibility = 8;
-            ui.ttxs.visibility = 8;
+          //  ui.ttxs.visibility = 8;
             ui.study.visibility = 0;
         }
         GLOBAL_CONFIG.put("script_chosen", ui.script_chosen.getSelectedItemPosition());
