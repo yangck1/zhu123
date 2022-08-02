@@ -35,7 +35,7 @@ ui.layout(
                                         <text text="脚本选择" textColor="#222222" textSize="16sp" maxLines="1" />
                                         <text text="切换脚本后需在配置页设置" textColor="#999999" textSize="14sp" maxLines="1" />
                                     </vertical>
-                                    <spinner id="script_chosen" marginLeft="4" marginRight="6" entries="天天向上Pro|--------|Study改" />
+                                    <spinner id="script_chosen" marginLeft="4" marginRight="6" entries="天天向上Pro|Study改" />
                                 </horizontal>
                             </card>
                             <card w="*" h="70" margin="10 5" cardCornerRadius="2dp" cardElevation="1dp" foreground="?selectableItemBackground">
@@ -548,12 +548,12 @@ var script_chosen_Listener = new android.widget.AdapterView.OnItemSelectedListen
             ui.study.visibility = 8;
             ui.ttxs_pro.visibility = 0;
         }
+        // else if (ui.script_chosen.getSelectedItemPosition() == 1) {
+        //     ui.ttxs_pro.visibility = 8;
+        //     ui.study.visibility = 8;
+        //     ui.ttxs.visibility = 0;
+        // }
         else if (ui.script_chosen.getSelectedItemPosition() == 1) {
-            ui.ttxs_pro.visibility = 8;
-            ui.study.visibility = 8;
-            ui.ttxs.visibility = 0;
-        }
-        else if (ui.script_chosen.getSelectedItemPosition() == 2) {
             ui.ttxs_pro.visibility = 8;
             ui.ttxs.visibility = 8;
             ui.study.visibility = 0;
