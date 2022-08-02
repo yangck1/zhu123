@@ -2119,7 +2119,11 @@ function send_pushplus(token, sign_list) {
     let title = option.child(0).child(0).text();
     if (title == "专项答题") {
       var score = option.child(2).text().match(/\d+/g)[0];
-      var total = option.child(2).text().match(/\d+/g)[1];
+      if(score <=5){
+        var total = 5;
+      }else{
+        var total = 10;
+      }
     } else {
       var score = option.child(2).text().match(/\d+/g)[0];
       var total = option.child(2).text().match(/\d+/g)[1];
