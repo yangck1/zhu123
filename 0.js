@@ -145,7 +145,7 @@ device.keepScreenOn(3600 * 1000);
 fInfo("检测题库更新");
 // var git_head = "https://gh.api.99988866.xyz/";
 // const update_info = get_tiku_by_http(git_head+"https://raw.githubusercontent.com/songgedodo/tiku/main/info.json");
-const update_info = get_tiku_by_http("https://yck.yangck.tk/https://raw.githubusercontent.com/yangck1/zhu123/main/%E9%A2%98%E5%BA%93/info.json");
+const update_info = get_tiku_by_http("http://www.yangck.tk:2052/directlink/local/tiku/tiantian/info.json");
 fInfo("正在加载对战题库......请稍等\n题库版本:"+update_info["tiku_version"]);
 var tiku = [];
 try {tiku = get_tiku_by_http(update_info["tiku_link"]);}
