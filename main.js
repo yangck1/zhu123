@@ -4,8 +4,6 @@ http.__okhttp__.setTimeout(10000);
 
 let url = [
     'http://www.yangck.tk:2052/directlink/local/tiku/code/UI.js',
-    'https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/UI.js',
-    'https://raw.githubusercontent.com/yangck1/zhu123/main/UI.js',
 ];
 
 for (var i = 0; i < url.length; i++) {
