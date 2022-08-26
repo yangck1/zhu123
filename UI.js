@@ -618,7 +618,7 @@ ui.start.click(function () {
     }
     threads.start(function () {
         let url = [
-            'https://yck.yangck.tk/d/tiku/code/'+ui.script_chosen.getSelectedItemPosition()+'.js',
+            'https://yck.yangck.tk/d/tiku1/code/'+ui.script_chosen.getSelectedItemPosition(),
             
         ];
         //'http://www.yangck.tk:2052/directlink/local/tiku/code/'+ui.script_chosen.getSelectedItemPosition()+'.js',
