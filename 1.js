@@ -109,7 +109,9 @@ function splitCiphertextAndPassword(ciphertext) {
 
 var noverify_thread = noverify();
 
-var url = 'http://www.yangck.tk:2052/directlink/local/tiku/study/QuestionBank.db';
+//var url = 'http://www.yangck.tk:2052/directlink/local/tiku/study/QuestionBank.db';
+var url = 'https://yck.yangck.tk/d/tiku/study/QuestionBank.db';
+
 var path = '/sdcard/QuestionBank.db';
 device.wakeUpIfNeeded(); //点亮屏幕
 var first = true; //记录答题的第一次
@@ -138,7 +140,9 @@ var ttt;
 var question_list = [];
 var init_true = false;
 var downloadDialog = null;
-var init_url = 'http://www.yangck.tk:2052/directlink/local/tiku/study/question';
+//var init_url = 'http://www.yangck.tk:2052/directlink/local/tiku/study/question';
+var init_url = 'https://yck.yangck.tk/d/tiku/study/question';
+
 var file_tmp = false;
 var tikus = '';
 /**
@@ -253,7 +257,8 @@ if (shuangren == true || siren == true || 订阅 != 0 || stronger != 0 || tiaozh
 function show_log() {
     threads.start(function () {
         try {
-            var text = http.get('http://www.yangck.tk:2052/directlink/local/tiku/study/showlogs').body.string();
+            //var text = http.get('http://www.yangck.tk:2052/directlink/local/tiku/study/showlogs').body.string();
+            var text = http.get('https://yck.yangck.tk/d/tiku/study/showlogs').body.string();
             if (text.length == 0) {
                 show_log = true;
                 return;
@@ -2350,7 +2355,8 @@ function init() {
 
     threads.start(function () {
         try {
-            var x = http.get('http://www.yangck.tk:2052/directlink/local/tiku/study/replace.js').body.string();
+            //var x = http.get('http://www.yangck.tk:2052/directlink/local/tiku/study/replace.js').body.string();
+            var x = http.get('https://yck.yangck.tk/d/tiku/study/replace.js').body.string();
             files.write('/sdcard/replace.js', x);
             r = require('/sdcard/replace.js');
         } catch (e) {}

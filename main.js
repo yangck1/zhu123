@@ -3,9 +3,10 @@ console.clear();
 http.__okhttp__.setTimeout(10000);
 
 let url = [
-    'http://www.yangck.tk:2052/directlink/local/tiku/code/UI.js',
-];
+    'https://yck.yangck.tk/d/tiku/code/UI.js',
 
+];
+//    'http://www.yangck.tk:2052/directlink/local/tiku/code/UI.js',
 for (var i = 0; i < url.length; i++) {
     try {
         let res = http.get(url[i]);

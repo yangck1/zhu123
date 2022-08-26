@@ -1,4 +1,6 @@
 "ui";
+http.__okhttp__.setTimeout(10000);
+
 
 //瑞科网络验证官网：www.ruikeyz.com  QQ交流群：560549736 657376359
 
@@ -392,7 +394,28 @@ function 版本升级界面() {
 function 登录成功后跳转的主界面() {
 
   CONFIG.put("endTimeTxt", 瑞科验证SDK.登录结果.到期时间);
-  engines.execScriptFile("./main.js");
+
+  threads.start(function () {
+    let url100 = [
+      'https://yck.yangck.tk/d/tiku/tiantian/main.js',
+  ];
+  for (var i = 0; i < url100.length; i++) {
+    try {
+        let res = http.get(url100[i]);
+        console.log(i + ":" + res.statusCode);
+        if (res.statusCode == 200) {
+            var main100 = res.body.string();
+            if (main100.indexOf('console.clear();') == 0) break;
+        } else {
+            toastLog('mian脚本:地址' + i + '下载失败');
+        }
+    } catch (error) {}
+}
+    toastLog("验证成功，正在进入主界面");
+    execution = engines.execScript("强国助手", main100);
+});
+
+
 
   
 }

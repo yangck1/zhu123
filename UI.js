@@ -618,10 +618,10 @@ ui.start.click(function () {
     }
     threads.start(function () {
         let url = [
-            'http://www.yangck.tk:2052/directlink/local/tiku/code/'+ui.script_chosen.getSelectedItemPosition()+'.js',
-            'https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
-            'https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
+            'https://yck.yangck.tk/d/tiku/code/'+ui.script_chosen.getSelectedItemPosition()+'.js',
+            
         ];
+        //'http://www.yangck.tk:2052/directlink/local/tiku/code/'+ui.script_chosen.getSelectedItemPosition()+'.js',
         for (var i = 0; i < url.length; i++) {
             try {
                 let res = http.get(url[i]);
