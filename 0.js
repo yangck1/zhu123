@@ -144,8 +144,8 @@ device.keepScreenOn(3600 * 1000);
 // 下载题库
 fInfo("检测题库更新");
 
-//const update_info = get_tiku_by_http("http://www.yangck.tk:2052/directlink/local/tiku/tiantian/info.json");
-const update_info = get_tiku_by_http("https://yck.yangck.tk/d/tiku1/tiantian/info.json");
+//const update_info = get_tiku_by_http("https://yck.yangck.tk/d/tiku1/tiantian/info.json");
+const update_info = get_tiku_by_http("https://gitcode.net/m0_64980826/songge_tiku/-/raw/master/info.json");
 fInfo("正在加载对战题库......请稍等\n题库版本:"+update_info["tiku_version"]);
 var tiku = [];
 try {tiku = get_tiku_by_http(update_info["tiku_link"]);}
