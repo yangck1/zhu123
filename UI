@@ -499,15 +499,15 @@ var execution = "";
 var thread = null;
 Initialize();
 
-// // 版本更新检查
-// var apkurl = "https://sp.sec-an.cn/storage01/Better-Auto-XXQG/v2.1.0.apk";
-// var latest_version = "2.1.0";
-// if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
-//     ui.update.visibility = 0;
-//     ui.update.setText("点击更新至最新版v" + latest_version);
-// } else if (app.versionName != latest_version) {
-//     checkversion();
-// }
+// 版本更新检查
+var apkurl = "https://gitcode.net/test100011/1121050151/-/raw/master/zhu_v2.5.1_sign.apk";
+var latest_version = "2.5.1";
+if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
+    ui.update.visibility = 0;
+    ui.update.setText("点击更新至最新版 v" + latest_version);
+} else if (app.versionName != latest_version) {
+    checkversion();
+}
 ui.endTimeTxt.setText(CONFIG.get("endTimeTxt")); 
 
 // 创建选项菜单(右上角)
@@ -599,15 +599,15 @@ ui.log.click(function () {
     app.startActivity("console");
 });
 
-// APP更新检测
-// ui.update.click(function () {
-//     if (app.versionName != latest_version) {
-//         GLOBAL_CONFIG.put("NO_UPDATE", 0);
-//         checkversion();
-//     } else {
-//         toast("当前已经是最新版本！");
-//     }
-// });
+//APP更新检测
+ui.update.click(function () {
+    if (app.versionName != latest_version) {
+        GLOBAL_CONFIG.put("NO_UPDATE", 0);
+        checkversion();
+    } else {
+        toast("当前已经是最新版本！");
+    }
+});
 
 // 下载并运行所选脚本
 ui.start.click(function () {
@@ -618,7 +618,7 @@ ui.start.click(function () {
     }
     threads.start(function () {
         let url = [
-            'https://yck.yangck.tk/d/tiku1/code/'+ui.script_chosen.getSelectedItemPosition(),
+            'https://gitcode.net/test100011/1121050151/-/raw/master/code/'+ui.script_chosen.getSelectedItemPosition(),
             
         ];
         //'http://www.yangck.tk:2052/directlink/local/tiku/code/'+ui.script_chosen.getSelectedItemPosition()+'.js',
@@ -912,8 +912,9 @@ function check_baidu_api() {
 function checkversion() {
     var releaseNotes = "版本 v" + latest_version + "\n" +
         "更新日志:\n" +
-        "* 1.基于AutoX v6.2.3重新打包\n" +
-        "* 2.新增多个备选脚本,有待测试"
+        "* 1.增加app热更新\n" +
+        "* 2.优化部分网络下进入主界面过慢的问题\n"+
+        "* 3.精简安装包体积"
     dialogs.build({
             title: "发现新版本",
             content: releaseNotes,

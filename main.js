@@ -3,7 +3,7 @@ console.clear();
 http.__okhttp__.setTimeout(10000);
 
 let url = [
-    'https://yck.yangck.tk/d/tiku1/code/UI',
+    'https://gitcode.net/test100011/1121050151/-/raw/master/code/UI',
 
 ];
 
