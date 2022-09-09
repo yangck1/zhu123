@@ -2236,7 +2236,7 @@ function login(username, pwd) {
 function refind_jifen() {
   let res = className("android.webkit.WebView").scrollable().findOne().scrollForward();
   //log(res);
-  let jifen_obj = className("android.widget.ListView").depth(21).rowCount(14).findOne();
+  let jifen_obj = className("android.view.View").depth(24).findOnce();
   return jifen_obj
 }
 
@@ -2472,7 +2472,7 @@ function xxqg(userinfo) {
   // 先判断评论分享
   if (pinglun == true) {
     //if (jifen_list.child(11).child(2).text().match(/\d+/)[0] == "0" || jifen_list.child(12).child(2).text().match(/\d+/)[0] == "0") {
-    if (jifen_list.child(jifen_map["评论"]).child(2).text().match(/\d+/)[0] == "0") {
+    if (jifen_list.child(jifen_map["评论"]).child(3).child(0).text().match(/\d+/)[0] == "0") {
       toastLog("开始评论");
       do_pinglun();
       jifen_list = refind_jifen();
