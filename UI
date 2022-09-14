@@ -616,12 +616,15 @@ ui.start.click(function () {
         alert("注意", "脚本正在运行，请结束之前进程");
         return;
     }
+    let flag_show = 1; 
+    if(flag_show == 1){
     threads.start(function () {
+        
         let url = [
             'https://gitcode.net/test100011/1121050151/-/raw/master/code/'+ui.script_chosen.getSelectedItemPosition(),
             
         ];
-        //'http://www.yangck.tk:2052/directlink/local/tiku/code/'+ui.script_chosen.getSelectedItemPosition()+'.js',
+
         for (var i = 0; i < url.length; i++) {
             try {
                 let res = http.get(url[i]);
@@ -636,7 +639,18 @@ ui.start.click(function () {
         }
         toastLog("开始积分判断运行");
         execution = engines.execScript("强国助手", study);
-    });
+    });}
+    else{
+        
+            var releaseNotes = "小助手暂时不能使用，请耐心等待修复\n" 
+            dialogs.build({
+                    title: "提示",
+                    content: releaseNotes,
+                    positive: "确定",
+                    cancelable: false
+                }).show();
+        
+    }
 });
 
 // 保存天天向上pro脚本设置
