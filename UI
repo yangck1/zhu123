@@ -621,7 +621,7 @@ ui.start.click(function () {
     threads.start(function () {
         
         let url = [
-            'https://ghproxy.com/https://raw.githubusercontent.com/sec-an/Better-Auto-XXQG/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
+            'https://ghproxy.com/https://github.com/yangck1/zhu123/blob/main/'+ui.script_chosen.getSelectedItemPosition(),
             
         ];
 
