@@ -500,8 +500,8 @@ var thread = null;
 Initialize();
 
 // 版本更新检查
-var apkurl = "https://gitcode.net/test100011/1121050151/-/raw/master/zhu_v2.5.1_sign.apk";
-var latest_version = "2.5.1";
+var apkurl = "https://gitcode.net/test100011/1121050151/-/raw/master/zhu_v2.5.2_sign.apk";
+var latest_version = "2.5.2";
 if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
     ui.update.visibility = 0;
     ui.update.setText("点击更新至最新版 v" + latest_version);
@@ -926,9 +926,7 @@ function check_baidu_api() {
 function checkversion() {
     var releaseNotes = "版本 v" + latest_version + "\n" +
         "更新日志:\n" +
-        "* 1.增加app热更新\n" +
-        "* 2.优化部分网络下进入主界面过慢的问题\n"+
-        "* 3.精简安装包体积"
+        "* 1.更换服务器\n"
     dialogs.build({
             title: "发现新版本",
             content: releaseNotes,
