@@ -3,7 +3,8 @@ console.clear();
 http.__okhttp__.setTimeout(10000);
 
 let url = [
-    'https://gitcode.net/test100011/1121050151/-/raw/master/code/UI',
+    'https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/UI',
+    'https://raw.githubusercontent.com/yangck1/zhu123/main/UI',
 
 ];
 
