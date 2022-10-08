@@ -609,9 +609,9 @@ ui.start.click(function () {
         alert("注意", "脚本正在运行，请结束之前进程");
         return;
     }
-    var flag_update = 1;// 1是不管更新 ；2是必须更新
-    if(GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)){
-              
+    var flag_update = 2;// 1是不管更新 ；2是必须更新
+    if(app.versionName == latest_version){
+        flag_update = 1;
     }
     let flag_show = 1; //1是正常运行，2是修复助手中
     if(flag_show == 1){
@@ -642,7 +642,7 @@ ui.start.click(function () {
         execution = engines.execScript("强国助手", study);
     });}
     else if (flag_update == 2){
-        var releaseNotes = "请更新小助手版本后再运行哦\n" 
+        var releaseNotes = "脚本添加Google ML kIT OCR选项，请更新小助手版本后再运行哦\n" 
         dialogs.build({
                 title: "提示",
                 content: releaseNotes,
@@ -940,7 +940,9 @@ function checkversion() {
     var releaseNotes = "版本 v" + latest_version + "\n" +
         "更新日志:\n" +
         "* 1.基于AutoX v6.3.4重新打包\n" +
-        "* 2.调整默认OCR为Google ML kIT OCR"
+        "* 2.调整默认OCR为Google ML kIT OCR\n"+
+        "* 3.可在脚本配置中手动调整OCR选择（不推荐第三方插件选项，识别没有自带的OCR快，可自行尝试）\n"+
+        "* 4.因更新Google ML kIT OCR，该版本推荐更新"
     dialogs.build({
             title: "发现新版本",
             content: releaseNotes,
