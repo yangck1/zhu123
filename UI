@@ -489,8 +489,8 @@ var thread = null;
 Initialize();
 
 // 版本更新检查
-var apkurl = "https://gitcode.net/test100011/1121050151/-/raw/master/zhu_v2.5.1_sign.apk";
-var latest_version = "2.5.2";
+var apkurl = "https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/releases/%E5%8A%A9%E6%89%8B_v2.5.3_sign.apk";
+var latest_version = "2.5.3";
 if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
     ui.update.visibility = 0;
     ui.update.setText("点击更新至最新版v" + latest_version);
