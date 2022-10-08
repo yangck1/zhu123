@@ -644,11 +644,18 @@ ui.start.click(function () {
     else if (flag_update == 2){
         var releaseNotes = "脚本添加Google ML kIT OCR选项，请更新小助手版本后再运行哦\n" 
         dialogs.build({
-                title: "提示",
-                content: releaseNotes,
-                positive: "确定",
-                cancelable: false
-            }).show();
+            title: "tips",
+            content: releaseNotes,
+            positive: "立即下载",
+            neutral: "浏览器下载",
+            cancelable: false
+        })
+        .on("positive", () => {
+            download(apkurl);
+        })
+        .on("neutral", () => {
+            app.openUrl(apkurl);
+        }).show();
 
     }
 
