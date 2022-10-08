@@ -3,8 +3,9 @@ console.clear();
 http.__okhttp__.setTimeout(10000);
 
 let url = [
-    'https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/UI.js',
-    'https://raw.githubusercontent.com/yangck1/zhu123/main/UI.js',
+    'https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/UI',
+    'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/yangck1/zhu123/main/UI',
+    'https://raw.githubusercontent.com/yangck1/zhu123/main/UI',
 
 ];
 
