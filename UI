@@ -620,9 +620,9 @@ ui.start.click(function () {
         // let url = 'https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition()+'.js';
         // execution = engines.execScript("强国助手", http.get(url).body.string());
         let url = [
-            'https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition(),
-            'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition(),
-            'https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition(),
+            'https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
+            'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
+            'https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition()+'.js',
             
         ];
 
