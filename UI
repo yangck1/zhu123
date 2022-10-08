@@ -165,11 +165,9 @@ ui.layout(
                             <horizontal  gravity="center_vertical" padding="5 5" >
                                 <View bg="#00BFFF" h="*" w="10"  ></View>
                                 <vertical padding="10 8" h="auto" w="0" layout_weight="1">
-                                    <text w="auto" textColor="#222222" textSize="15sp" text="是否启用第三方OCR插件" />
-                                    <text w="auto" textColor="#999999" textSize="12sp" text="内置ocr很慢的可以试试(并没有内置的好)" />
-                                    <text w="auto" textColor="#999999" textSize="12sp" text="需要提前安装，未安装会跳转浏览器下载" />
-                                </vertical>
-                                <checkbox id="ttxs_pro_ocr_plugin" marginLeft="4" marginRight="6" checked="false" />
+                                    <text w="auto" textColor="#222222" textSize="15sp" text="OCR选择" />
+                                    <spinner id="ttxs_pro_ocr_choice" marginLeft="4" marginRight="6" entries="GoogleMLKit|PaddleOCR|第三方插件" />
+                                </vertical> 
                             </horizontal>
                             <horizontal  gravity="center_vertical" padding="5 5" >
                                 <View bg="#00BFFF" h="*" w="10"  ></View>
@@ -266,7 +264,7 @@ ui.layout(
                             <horizontal  gravity="center_vertical" padding="5 5" >
                                 <View bg="#00BFFF" h="*" w="10"  ></View>
                                 <vertical padding="10 8" h="auto" w="0" layout_weight="1">
-                                    <text w="auto" textColor="#222222" textSize="15sp" text="多账号(选填，最多3个)" />
+                                    <text w="auto" textColor="#222222" textSize="15sp" text="多账号(选填，不限个数)" />
                                     <text w="auto" textColor="#999999" textSize="12sp" text="使用前确保所有账号都已完成短信验证" />
                                     <text w="auto" textColor="#999999" textSize="12sp" text="账号1:密码1:token1(换行/回车)账号2:密码2:token2(换行/回车)账号3:密码3:token3" />
                                     <text w="auto" textColor="#999999" textSize="12sp" text="结束后会自动登录回账号1" />
@@ -280,15 +278,6 @@ ui.layout(
                             </horizontal>
                             <horizontal>
                                 <button style="Widget.AppCompat.Button.Colored" id="ttxs_pro_reset" text="恢复默认" padding="12dp" w="*" />
-                            </horizontal>
-                        </vertical>
-                        <vertical id="ttxs" gravity="center">
-                            <horizontal  gravity="center_vertical" padding="5 5" >
-                                <View bg="#00BFFF" h="*" w="10"  ></View>
-                                <vertical padding="10 8" h="auto" w="0" layout_weight="1">
-                                    <text w="auto" textColor="#222222" textSize="15sp" text="测试" />
-                                </vertical>
-                                <checkbox id="test_article1" marginLeft="4" marginRight="6" checked="true" />
                             </horizontal>
                         </vertical>
                         <vertical id="study" gravity="center">
@@ -494,27 +483,28 @@ var GLOBAL_CONFIG = storages.create("GLOBAL_CONFIG");
 var TTXS_PRO_CONFIG = storages.create("TTXS_PRO_CONFIG");
 var STUDY_CONFIG = storages.create("STUDY_CONFIG");
 var BAIDUAPI = storages.create("BAIDUAPI");
-var CONFIG = storages.create("CONFIG");
+var CONFIG = storages.create("CONFIG"); //yck
 var execution = "";
 var thread = null;
 Initialize();
 
 // 版本更新检查
-var apkurl = "https://gitcode.net/test100011/1121050151/-/raw/master/zhu_v2.5.2_sign.apk";
+var apkurl = "https://gitcode.net/test100011/1121050151/-/raw/master/zhu_v2.5.1_sign.apk";
 var latest_version = "2.5.2";
 if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
     ui.update.visibility = 0;
-    ui.update.setText("点击更新至最新版 v" + latest_version);
+    ui.update.setText("点击更新至最新版v" + latest_version);
 } else if (app.versionName != latest_version) {
     checkversion();
 }
-ui.endTimeTxt.setText(CONFIG.get("endTimeTxt")); 
+
 
 // 创建选项菜单(右上角)
 ui.emitter.on("create_options_menu", menu=>{
     menu.add("日志");
     menu.add("关于");
-//    menu.add("Github");
+    //menu.add("Github");
+    menu.add("强国V2.33版本下载");
 });
 
 // 监听选项菜单点击
@@ -529,6 +519,9 @@ ui.emitter.on("options_item_selected", (e, item)=>{
         // case "Github":
         //     app.openUrl("https://github.com/sec-an/Better-Auto-XXQG");
         //     break;
+        case "V2.33.0下载":
+            app.openUrl("https://android-apps.pp.cn/fs08/2021/12/28/3/110_f37c420b0944cb7b9f60a2ad9b5518d2.apk?yingid=web_space&packageid=500730793&md5=664bb7bdcae57be189fc86100f4371c4&minSDK=21&size=191654161&shortMd5=1fee0bd160d08108a9d9e5f4773ce741&crc32=3879122865&did=ad484a175e19d0928044435e24bf03cb");
+            break;
     }
     e.consumed = true;
 });
@@ -544,18 +537,18 @@ var script_chosen_Listener = new android.widget.AdapterView.OnItemSelectedListen
     onItemSelected: function (parent, view, position, id) {
         toastLog('选择脚本：' + ui.script_chosen.getSelectedItem());
         if (ui.script_chosen.getSelectedItemPosition() == 0) {
-          //  ui.ttxs.visibility = 8;
+           // ui.ttxs.visibility = 8; //yck
             ui.study.visibility = 8;
             ui.ttxs_pro.visibility = 0;
         }
-        // else if (ui.script_chosen.getSelectedItemPosition() == 1) {
+        // else if (ui.script_chosen.getSelectedItemPosition() == 1) { //yck
         //     ui.ttxs_pro.visibility = 8;
         //     ui.study.visibility = 8;
         //     ui.ttxs.visibility = 0;
         // }
-        else if (ui.script_chosen.getSelectedItemPosition() == 1) {
+        else if (ui.script_chosen.getSelectedItemPosition() == 2) {
             ui.ttxs_pro.visibility = 8;
-          //  ui.ttxs.visibility = 8;
+           // ui.ttxs.visibility = 8; //yck
             ui.study.visibility = 0;
         }
         GLOBAL_CONFIG.put("script_chosen", ui.script_chosen.getSelectedItemPosition());
@@ -599,7 +592,7 @@ ui.log.click(function () {
     app.startActivity("console");
 });
 
-//APP更新检测
+// APP更新检测
 ui.update.click(function () {
     if (app.versionName != latest_version) {
         GLOBAL_CONFIG.put("NO_UPDATE", 0);
@@ -616,12 +609,19 @@ ui.start.click(function () {
         alert("注意", "脚本正在运行，请结束之前进程");
         return;
     }
-    let flag_show = 1; 
+    var flag_update = 1;// 1是不管更新 ；2是必须更新
+    if(GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)){
+              
+    }
+    let flag_show = 1; //1是正常运行，2是修复助手中
     if(flag_show == 1){
+      if(flag_update == 1){
     threads.start(function () {
-        
+        // let url = 'https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition()+'.js';
+        // execution = engines.execScript("强国助手", http.get(url).body.string());
         let url = [
-            'https://ghproxy.com/https://github.com/yangck1/zhu123/blob/main/'+ui.script_chosen.getSelectedItemPosition(),
+            'https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition(),
+            'https://raw.githubusercontent.com/yangck1/zhu123/main/'+ui.script_chosen.getSelectedItemPosition(),
             
         ];
 
@@ -640,16 +640,28 @@ ui.start.click(function () {
         toastLog("开始积分判断运行");
         execution = engines.execScript("强国助手", study);
     });}
-    else{
-        
-            var releaseNotes = "小助手暂时不能使用，请耐心等待修复\n" 
-            dialogs.build({
-                    title: "提示",
-                    content: releaseNotes,
-                    positive: "确定",
-                    cancelable: false
-                }).show();
-        
+    else if (flag_update == 2){
+        var releaseNotes = "请更新小助手版本后再运行哦\n" 
+        dialogs.build({
+                title: "提示",
+                content: releaseNotes,
+                positive: "确定",
+                cancelable: false
+            }).show();
+
+    }
+
+}
+    else if(flag_show == 2){
+
+        var releaseNotes = "小助手暂时不能使用，请耐心等待修复\n" 
+        dialogs.build({
+                title: "提示",
+                content: releaseNotes,
+                positive: "确定",
+                cancelable: false
+            }).show();
+
     }
 });
 
@@ -667,7 +679,7 @@ ui.ttxs_pro_save.click(function () {
     TTXS_PRO_CONFIG.put("meizhou", ui.ttxs_pro_meizhou.getSelectedItemPosition());
     TTXS_PRO_CONFIG.put("zhuanxiang", ui.ttxs_pro_zhuanxiang.getSelectedItemPosition());
     TTXS_PRO_CONFIG.put("tiaozhan", ui.ttxs_pro_tiaozhan.isChecked());
-    TTXS_PRO_CONFIG.put("ocr_plugin", ui.ttxs_pro_ocr_plugin.isChecked());
+    TTXS_PRO_CONFIG.put("ocr_choice", ui.ttxs_pro_ocr_choice.getSelectedItemPosition());
     TTXS_PRO_CONFIG.put("ocr_maxtime", ui.ttxs_pro_ocr_maxtime.getText()+"");
     TTXS_PRO_CONFIG.put("duizhan_mode", ui.ttxs_pro_duizhan_mode.getSelectedItemPosition());
     TTXS_PRO_CONFIG.put("jisu", ui.ttxs_pro_jisu.getText()+"");
@@ -711,8 +723,8 @@ ui.ttxs_pro_reset.click(function () {
     ui.ttxs_pro_zhuanxiang.setSelection(TTXS_PRO_CONFIG.get("zhuanxiang"));
     TTXS_PRO_CONFIG.put("tiaozhan", true);
     ui.ttxs_pro_tiaozhan.setChecked(TTXS_PRO_CONFIG.get("tiaozhan"));
-    TTXS_PRO_CONFIG.put("ocr_plugin", false);
-    ui.ttxs_pro_ocr_plugin.setChecked(TTXS_PRO_CONFIG.get("ocr_plugin"));
+    TTXS_PRO_CONFIG.put("ocr_choice", 0);
+    ui.ttxs_pro_ocr_choice.setSelection(TTXS_PRO_CONFIG.get("ocr_choice"));
     TTXS_PRO_CONFIG.put("ocr_maxtime", "5000");
     ui.ttxs_pro_ocr_maxtime.setText(TTXS_PRO_CONFIG.get("ocr_maxtime"));
     TTXS_PRO_CONFIG.put("duizhan_mode", 0);
@@ -854,7 +866,7 @@ function Initialize() {
     ui.ttxs_pro_meizhou.setSelection(TTXS_PRO_CONFIG.get("meizhou", 0));
     ui.ttxs_pro_zhuanxiang.setSelection(TTXS_PRO_CONFIG.get("zhuanxiang", 0));
     ui.ttxs_pro_tiaozhan.setChecked(TTXS_PRO_CONFIG.get("tiaozhan", true));
-    ui.ttxs_pro_ocr_plugin.setChecked(TTXS_PRO_CONFIG.get("ocr_plugin", false));
+    ui.ttxs_pro_ocr_choice.setSelection(TTXS_PRO_CONFIG.get("ocr_choice", 0));
     ui.ttxs_pro_ocr_maxtime.setText(TTXS_PRO_CONFIG.get("ocr_maxtime", "5000"));
     ui.ttxs_pro_duizhan_mode.setSelection(TTXS_PRO_CONFIG.get("duizhan_mode", 0));
     ui.ttxs_pro_jisu.setText(TTXS_PRO_CONFIG.get("jisu", "0"));
@@ -926,7 +938,8 @@ function check_baidu_api() {
 function checkversion() {
     var releaseNotes = "版本 v" + latest_version + "\n" +
         "更新日志:\n" +
-        "* 1.更换服务器\n"
+        "* 1.基于AutoX v6.3.4重新打包\n" +
+        "* 2.调整默认OCR为Google ML kIT OCR"
     dialogs.build({
             title: "发现新版本",
             content: releaseNotes,
@@ -936,7 +949,9 @@ function checkversion() {
             checkBoxPrompt: "不再提示",
             cancelable: false
         })
-        .on("positive", download)
+        .on("positive", () => {
+            download(apkurl);
+        })
         .on("neutral", () => {
             app.openUrl(apkurl);
         })
@@ -946,7 +961,7 @@ function checkversion() {
 }
 
 // 打开下载进度面板
-function download() {
+function download(url) {
     downloadDialog = dialogs.build({
         title: "正在下载...",
         progress: {
@@ -956,15 +971,15 @@ function download() {
         autoDismiss: false,
         cancelable: false
     }).show();
-    startDownload();
+    startDownload(url);
 }
 
 // 下载apk的主方法体
-function startDownload() {
+function startDownload(url) {
     threads.start(function () {
         var path = files.cwd() + "/new.apk";
         let apkFile = new File(path);
-        var conn = new URL(apkurl).openConnection();
+        var conn = new URL(url).openConnection();
         conn.connect();
         let is = conn.getInputStream();
         let length = conn.getContentLength();
