@@ -510,7 +510,7 @@ if(CONFIG.get("hot_update_flag",2) == CONFIG.get("hot_update_flag1")){
 
 if(CONFIG.get("hot_update")&&CONFIG.get("hot_update_flag1") != 1){
 
-    var releaseNotes = "脚本添加Google ML kIT OCR选项，请更新小助手版本后再运行哦\n" 
+    var releaseNotes = "修复卡密时间不显示的bug\n" 
         dialogs.build({
             title: "热更新",
             content: releaseNotes,
