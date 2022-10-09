@@ -488,30 +488,27 @@ var execution = "";
 var thread = null;
 Initialize();
 
-// 版本更新检查
-var apkurl = "https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/releases/%E5%8A%A9%E6%89%8B_v2.5.3_sign.apk";
-var latest_version = "2.5.3";
-if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
-    ui.update.visibility = 0;
-    ui.update.setText("点击更新至最新版v" + latest_version);
-} else if (app.versionName != latest_version) {
-    checkversion();
-}
-
-
+function hot_update_flag() {
+threads.start(function () {
 try {
     var hot_update_flag = http.get('https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/hot_update_flag').body.string();
+    CONFIG.put("hot_update_flag1",hot_update_flag);
+    console.log(hot_update_flag);
 } catch (error) {
-    hot_update_flag = 1;
+    CONFIG.put("hot_update_flag1",1);
+    console.log("errrrrrr");
 }
+})}
 
-if(CONFIG.get("hot_update_flag",2) == hot_update_flag){
+hot_update_flag();
+//CONFIG.remove("hot_update_flag");
+if(CONFIG.get("hot_update_flag",2) == CONFIG.get("hot_update_flag1")){
     CONFIG.put("hot_update",false);
 }else{
     CONFIG.put("hot_update",true);
 }
 
-if(CONFIG.get("hot_update")&&hot_update_flag != 1){
+if(CONFIG.get("hot_update")&&CONFIG.get("hot_update_flag1") != 1){
 
     var releaseNotes = "脚本添加Google ML kIT OCR选项，请更新小助手版本后再运行哦\n" 
         dialogs.build({
@@ -522,12 +519,20 @@ if(CONFIG.get("hot_update")&&hot_update_flag != 1){
         })
         .on("positive", () => {
             CONFIG.put("hot_update",false);
-            CONFIG.put("hot_update_flag",hot_update_flag);
+            CONFIG.put("hot_update_flag",CONFIG.get("hot_update_flag1"));
         }).show();
 
 }
 
-
+// 版本更新检查
+var apkurl = "https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/releases/%E5%8A%A9%E6%89%8B_v2.5.3_sign.apk";
+var latest_version = "2.5.3";
+if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
+    ui.update.visibility = 0;
+    ui.update.setText("点击更新至最新版v" + latest_version);
+} else if (app.versionName != latest_version) {
+    checkversion();
+}
 ui.endTimeTxt.setText(CONFIG.get("endTimeTxt")); //yck
 
 // 创建选项菜单(右上角)
