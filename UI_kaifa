@@ -499,7 +499,7 @@ if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
 }
 
 var hot_update = 1;
-var hot_update_flag = 1;
+var hot_update_flag = 2;
 if(hot_update == hot_update_flag){
     CONFIG.put("hot_update",false);
 }else{
