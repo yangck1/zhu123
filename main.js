@@ -9,6 +9,13 @@ let url = [
 
 ];
 
+// let url = [
+//     'https://ghproxy.com/https://raw.githubusercontent.com/yangck1/zhu123/main/UI_kaifa',
+//     'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/yangck1/zhu123/main/UI_kaifa',
+//     'https://raw.githubusercontent.com/yangck1/zhu123/main/UI_kaifa',
+
+// ];
+
 for (var i = 0; i < url.length; i++) {
     try {
         let res = http.get(url[i]);
