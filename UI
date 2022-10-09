@@ -499,6 +499,8 @@ if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
 }
 
 
+ui.endTimeTxt.setText(CONFIG.get("endTimeTxt")); //yck
+
 // 创建选项菜单(右上角)
 ui.emitter.on("create_options_menu", menu=>{
     menu.add("日志");
