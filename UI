@@ -510,7 +510,7 @@ if(CONFIG.get("hot_update_flag",2) == CONFIG.get("hot_update_flag1")){
 
 if(CONFIG.get("hot_update")&&CONFIG.get("hot_update_flag1") != 1){
 
-    var releaseNotes = "修复卡密时间不显示的bug\n" 
+    var releaseNotes = "添加太空三人行\n" 
         dialogs.build({
             title: "热更新",
             content: releaseNotes,
@@ -645,7 +645,7 @@ ui.start.click(function () {
         alert("注意", "脚本正在运行，请结束之前进程");
         return;
     }
-    var flag_update = 2;// 1是不管更新 ；2是必须更新
+    var flag_update = 1;// 1是不管更新 ；2是必须更新
     if(app.versionName == latest_version){
         flag_update = 1;
     }
