@@ -649,7 +649,7 @@ ui.start.click(function () {
     if(app.versionName == latest_version){
         flag_update = 1;
     }
-    let flag_show = 1; //1是正常运行，2是修复助手中
+    let flag_show = 2; //1是正常运行，2是修复助手中
     if(flag_show == 1){
       if(flag_update == 1){
     threads.start(function () {
