@@ -2589,7 +2589,7 @@ function main(userinfo){
 /*******************主程序部分*******************/
 /********定义全局变量*********/
 var jifen_list, meizhou_dao, zhuanxiang_dao, dingyue_dao, storage_user, name, jinri, zongfen;
-var jifen_map = {"评论":10,"视频":2,"文章":1,"每日":4,"每周":13,"专项":5,"挑战":6,"四人":7,"三人":8,"双人":8,
+var jifen_map = {"评论":10,"视频":2,"文章":1,"每日":4,"每周":13,"专项":5,"挑战":6,"四人":7,"双人":8,
                 "订阅":9,"本地":11},
     jifen_flag = "old";
 // 分割账号
