@@ -16,7 +16,6 @@ var meiri = TTXS_PRO_CONFIG.get("meiri", true);
 var meizhou = TTXS_PRO_CONFIG.get("meizhou", 0);
 var zhuanxiang = TTXS_PRO_CONFIG.get("zhuanxiang", 0);
 var tiaozhan = TTXS_PRO_CONFIG.get("tiaozhan", true);
-//var sanren = TTXS_PRO_CONFIG.get("sanren", true);
 var ocr_choice = TTXS_PRO_CONFIG.get("ocr_choice", 0);
 var ocr_maxtime = TTXS_PRO_CONFIG.get("ocr_maxtime", "5000");
 var duizhan_mode = TTXS_PRO_CONFIG.get("duizhan_mode", 0);
@@ -862,57 +861,6 @@ function do_tiaozhan() {
     // 没答错总数加1
     total += 1;
   }
-}
-
-
-/********太空三人行*********/
-function do_sanren() {
-  entry_jinfen_project("三人");
-  fSet("title", "太空三人行…");
-  fClear();
-  fInfo("开始用户须知弹窗检测");
-  var user_thread = threads.start(function() {
-    //在新线程执行的代码
-    className("android.widget.Button").text("不同意").waitFor();
-    fInfo("检测到用户须知弹窗");
-    sleep(1000);
-    var btn = className("android.widget.Button").text("同意").findOne();
-    btn.click();
-    fInfo("已同意");
-  });
-  sleep(1000);
-  for (var i = 0; i < 2; i++) {
-      sleep(1000);
-      textStartsWith("网络").findOne().parent().child(1).child(0).click();
-      sleep(1000);
-      while (!text("开始").exists());
-      while (!text("继续挑战").exists()) {
-          sleep(2000);
-          // 等待选项加载
-          className("android.widget.RadioButton").depth(32).clickable(true).waitFor();
-          // 随机选择
-          try {
-              var options = className("android.widget.RadioButton").depth(32).find();
-              var select = random(0, options.length - 1);
-              className("android.widget.RadioButton").depth(32).findOnce(select).click();
-          } catch (error) {
-          }
-          while (!textMatches(/第\d题/).exists() && !text("继续挑战").exists() && !text("开始").exists());
-      }
-      if (i < 1) {
-          sleep(1000);
-          while (!click("继续挑战"));
-          sleep(1000);
-      }
-  }
-  user_thread.isAlive() && (user_thread.interrupt(), fInfo("终止用户须知弹窗检测"));
-  sleep(2000);
-  back();
-  sleep(1000);
-  back();
-  text("登录").waitFor();
-  ran_sleep();
-  return true;
 }
 
 /********双人、四人赛*********/
@@ -2505,7 +2453,6 @@ function xxqg(userinfo) {
   2 != zhuanxiang && ("old" == jifen_flag && "0" == jifen_list.child(jifen_map["专项"]).child(2).text().match(/\d+/)[0] || "new" == jifen_flag && "0" == jifen_list.child(jifen_map["专项"]).child(3).child(0).text()) && (toastLog("专项答题开始"), do_zhuanxiang(), jifen_list =
       refind_jifen());
   true == tiaozhan && ("old" == jifen_flag && "已完成" != jifen_list.child(jifen_map["挑战"]).child(3).text() || "new" == jifen_flag && "已完成" != jifen_list.child(jifen_map["挑战"]).child(4).text()) && (toastLog("挑战答题开始"), do_tiaozhan(), jifen_list = refind_jifen());
-  true == sanren && ("old" == jifen_flag && "已完成" != jifen_list.child(jifen_map["三人"]).child(3).text() || "new" == jifen_flag && "已完成" != jifen_list.child(jifen_map["三人"]).child(4).text()) && (toastLog("太空三人行开始"), do_sanren(), jifen_list = refind_jifen());
   if (ocr_test()) {
       if (true == siren && ("old" == jifen_flag && 3 >= parseInt(jifen_list.child(jifen_map["四人"]).child(2).text().match(/\d+/)[0]) || "new" == jifen_flag && 3 >= parseInt(jifen_list.child(jifen_map["四人"]).child(3).child(0).text()))) {
           toastLog("四人赛开始");
