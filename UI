@@ -510,7 +510,7 @@ if(CONFIG.get("hot_update_flag",2) == CONFIG.get("hot_update_flag1")){
 
 if(CONFIG.get("hot_update")&&CONFIG.get("hot_update_flag1") != 1){
 
-    var releaseNotes = "添加太空三人行\n" 
+    var releaseNotes = "太空三人行结束，移除\n" 
         dialogs.build({
             title: "热更新",
             content: releaseNotes,
@@ -649,7 +649,7 @@ ui.start.click(function () {
     if(app.versionName == latest_version){
         flag_update = 1;
     }
-    let flag_show = 2; //1是正常运行，2是修复助手中
+    let flag_show = 1; //1是正常运行，2是修复助手中
     if(flag_show == 1){
       if(flag_update == 1){
     threads.start(function () {
